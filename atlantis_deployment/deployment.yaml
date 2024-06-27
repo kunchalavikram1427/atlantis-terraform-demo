@@ -30,8 +30,6 @@ spec:
               key: AWS_SECRET_ACCESS_KEY
         - name: AWS_REGION
           value: ap-south-1
-        - name: TF_PLUGIN_CACHE_MAY_BREAK_DEPENDENCY_LOCK_FILE
-          value: "true"
         - name: ATLANTIS_REPO_ALLOWLIST
           value: github.com/kunchalavikram1427/*
         - name: ATLANTIS_GH_USER
