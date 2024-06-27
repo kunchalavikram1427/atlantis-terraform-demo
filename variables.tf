@@ -1,5 +1,5 @@
 variable "num_of_uuids" {
-  default = 2
+  default = 1
   type    = number
 }
 
