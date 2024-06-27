@@ -30,6 +30,12 @@ spec:
               key: AWS_SECRET_ACCESS_KEY
         - name: AWS_REGION
           value: ap-south-1
+        - name: TF_PLUGIN_CACHE_MAY_BREAK_DEPENDENCY_LOCK_FILE
+          value: "true"
+        - name: ATLANTIS_ATLANTIS_URL
+          value: "http://k8s-default-atlantis-157433424a-1535146993.ap-south-1.elb.amazonaws.com"
+        - name: ATLANTIS_DISABLE_AUTOPLAN
+          value: "true"
         - name: ATLANTIS_REPO_ALLOWLIST
           value: github.com/kunchalavikram1427/*
         - name: ATLANTIS_GH_USER
@@ -51,11 +57,11 @@ spec:
           containerPort: 4141
         resources:
           requests:
-            memory: 256Mi
-            cpu: 100m
+            memory: 512Mi
+            cpu: 1
           limits:
-            memory: 256Mi
-            cpu: 100m
+            memory: 1Gi
+            cpu: 2
         livenessProbe:
           periodSeconds: 60
           httpGet:
