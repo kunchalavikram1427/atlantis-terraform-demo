@@ -57,19 +57,19 @@ aws iam list-users
 
 ### Create EKS cluster through EKSCTL
 ```
-eksctl create cluster --name demo --region=ap-south-1 --nodegroup-name demo --nodes 2 --nodes-min 1 --nodes-max 2 --node-volume-size 8 
+eksctl create cluster --name test --region=ap-south-1 --nodegroup-name demo --nodes 2 --nodes-min 1 --nodes-max 2 --node-volume-size 8 
 ```
 ```
 eksctl get cluster --region=ap-south-1
 ```
 ```
 NAME    REGION          EKSCTL CREATED
-demo    ap-south-1      True
+test    ap-south-1      True
 ```
 
 ### Get kube config
 ```
-aws eks update-kubeconfig --region ap-south-1 --name demo 
+aws eks update-kubeconfig --region ap-south-1 --name test 
 ```
 ```
 kubectl get nodes
@@ -81,10 +81,10 @@ ip-192-168-68-105.ap-south-1.compute.internal   Ready    <none>   6m43s   v1.30.
 ### Associate OIDC provider
 https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 ```
-eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster=demo --approve
+eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster=test --approve
 ```
 ```
-aws eks describe-cluster --name demo --query "cluster.identity.oidc.issuer" --output text
+aws eks describe-cluster --name test --query "cluster.identity.oidc.issuer" --output text
 ```
 ### Deploy AWS LoadBalancer Controller
 The AWS Load Balancer Controller manages AWS Elastic Load Balancers for a Kubernetes cluster. You can use the controller to expose your cluster apps to the internet. The controller provisions AWS load balancers that point to cluster Service or Ingress resources. In other words, the controller creates a single IP address or DNS name that points to multiple pods in your cluster.
@@ -94,7 +94,7 @@ The AWS Load Balancer Controller manages AWS Elastic Load Balancers for a Kubern
 
 ```
 eksctl create iamserviceaccount \
-  --cluster=demo \
+  --cluster=test \
   --namespace=kube-system \
   --name=aws-load-balancer-controller \
   --role-name AmazonEKSLoadBalancerControllerRole \
@@ -108,7 +108,7 @@ helm repo update eks
 ```
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
-  --set clusterName=demo \
+  --set clusterName=test \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller 
 ```
@@ -118,7 +118,7 @@ kubectl get deployment -n kube-system aws-load-balancer-controller
 
 ### Delete EKS cluster
 ```
-eksctl delete cluster --name demo --region=ap-south-1
+eksctl delete cluster --name test --region=ap-south-1
 ```
 
 ## Installing Atlantis
