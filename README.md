@@ -92,6 +92,12 @@ The AWS Load Balancer Controller manages AWS Elastic Load Balancers for a Kubern
 - https://docs.aws.amazon.com/eks/latest/userguide/lbc-helm.html
 - https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html
 
+Create an IAM policy
+```
+aws iam create-policy \
+    --policy-name AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://atlantis_deployment/iam_policy.json
+```
 ```
 eksctl create iamserviceaccount \
   --cluster=demo \
