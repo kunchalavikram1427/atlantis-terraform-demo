@@ -2,7 +2,6 @@
 https://github.com/runatlantis/atlantis-example
 
 ## Installing tools
-
 ### Installing AWS CLI
 https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
